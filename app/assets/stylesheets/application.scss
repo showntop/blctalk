@@ -1,0 +1,153 @@
+/*
+ *= require font-awesome
+ *= require highlight
+ **= require dropzone/dropzone
+ *= require jquery.atwho
+ *= require flexslider.css
+ *= require_self
+ *= require home
+ *= require topics
+ */
+
+
+//Import bootstrap-sprockets
+@import "bootstrap-sprockets";
+
+// Import paper variables
+@import "_variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// Bootstrap body padding for fixed navbar
+// body { padding-top: 60px; }
+
+// And finally bootswatch style itself
+@import "_bootswatch";
+
+
+
+
+
+// /* Bootstrap Theme */
+body {
+  color: #000;
+  font-family: Helvetica, Arial, "PingFang SC", "Noto Sans", Roboto, "Microsoft Yahei", sans-serif;
+  letter-spacing: .03em;
+  padding-top: 74px;
+}
+
+.header {
+
+  .navbar-collapse {
+    float: left;
+  }
+
+  .user-bar {
+    li > a { padding-left: 11px !important; padding-right: 11px !important; }
+    .dropdown-avatar {
+      margin-right: 6px;
+      .dropdown-toggle { padding-top: 16px !important; padding-bottom: 16px !important;}
+    }
+    .navbar-toggle { display: none;  margin: 0; padding: 6px 9px; }
+
+    .avatar-32 { display: inline-block; width: 32px; height: 32px; }
+  }
+
+}
+
+
+.navbar {
+  &.fixed-title {
+    .navbar-topic-title { display: none; }
+  }
+  .navbar-topic-title {
+    display: none;
+  }
+}
+
+@media (min-width: 767px) {
+  .navbar {
+    &.fixed-title {
+      .navbar-topic-title { display: block; }
+      #main-nav-menu { display: none; }
+      .nav-search { display: none; }
+    }
+    .navbar-topic-title {
+      display: none;
+      height: $navbar-height;
+      overflow: hidden;
+
+      a.topic-title {
+        display: inline;
+        text-decoration: none;
+        overflow: hidden;
+        line-height: 0;
+        max-width: 400px;
+        color: #000;
+        &:hover,
+        &:active,
+        &:visited { color: #000; }
+
+        i.fa { color: #999; margin-left: 3px; }
+        i.fa-diamond { color: #F0F0F0; }
+        i.fa-check { color: #123fff; }
+      }
+      h1 {
+        margin: 0; padding: 0; font-size: 18px; line-height: $navbar-height; color: #FF9800E
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar {
+    .navbar-topic-title {
+      a.topic-title {
+        max-width: 780px;
+      }
+    }
+  }
+}
+
+.avatar {
+  .uface,
+  .media-object { border-radius: 120px; }
+}
+.avatar-16 { width: 16px; height: 16px; border-radius: 120px; }
+.avatar-32 { width: 32px; height: 32px; border-radius: 120px; }
+.avatar-48 { width: 48px; height: 48px; border-radius: 120px; }
+.avatar-96 { width: 96px; height: 96px; border-radius: 120px; }
+@media (max-width: 480px) {
+  .avatar-48 { width: 32px; height: 32px; }
+}
+
+/* Modal */
+.modal {
+  .modal-content {
+    h4.title { margin-bottom: 20px; font-size: 15px; }
+    border: 0px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15), 0px 0px 1px 1px rgba(0, 0, 0, 0.05);
+
+    p { margin-bottom: 5px; }
+  }
+  .modal-header {
+    border: 0px;
+    padding-bottom: 0px;
+    .close { margin-top: -8px; font-weight: normal; outline: none !important; }
+    .modal-title {
+      font-size: 16px;
+    }
+  }
+  .modal-footer {
+    border-color: #e5e5e5;
+  }
+
+  @media (min-width: 768px) {
+    .modal-dialog {
+      width: 768px;
+    }
+  }
+}
+
+

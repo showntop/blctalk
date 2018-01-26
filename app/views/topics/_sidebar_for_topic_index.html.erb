@@ -1,0 +1,47 @@
+<% if current_user && current_user.newbie? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">新手必读</div>
+    <div class="panel-body">
+      <%= raw Setting.newbie_notices %>
+    </div>
+  </div>
+<% else %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= link_to t('topics.new_topic'), main_app.new_topic_path, class: 'btn btn-primary btn-block' %>
+    </div>
+  </div>
+<% end %>
+
+
+<%= raw Setting.topic_index_sidebar_html %>
+
+<% cache(["sidebar_statistics",Time.now.strftime("%Y-%m-%d %H")]) do %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= t("common.excellent_topics")%></div>
+    <ul class="list-group">
+      <% Topic.all.each do |t| %>
+      <%= link_to t.title, "#{main_app.topic_path(t)}", class: 'list-group-item' %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">热门节点</div>
+  <ul class="list-group">
+    <% Node.all.each do |t| %>
+    <%= link_to t.name, "#{main_app.node_path(t)}", class: 'list-group-item' %>
+    <% end %>
+  </ul>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">推荐作者</div>
+  <ul class="list-group">
+    <% User.all.each do |t| %>
+    <%= link_to t.name, "#{main_app.node_path(t)}", class: 'list-group-item' %>
+    <% end %>
+  </ul>
+</div>
+

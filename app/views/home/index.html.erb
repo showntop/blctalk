@@ -1,0 +1,52 @@
+<%= raw Setting.index_html %>
+
+<div class="row home_headline_topics">
+  <div class="col-md-4">
+      <div>头条</div>
+      <!-- Place somewhere in the <body> of your page -->
+      <div class="flexslider">
+        <ul class="slides">
+          <% Topic.headline.each do |t| %>
+            <li>
+              <!-- <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516774999867&di=db3c80049f9d816c8826d74aff9c4dd0&imgtype=0&src=http%3A%2F%2Fm.qqzhi.com%2Fupload%2Fimg_0_4098448448D3517229858_23.jpg"/> -->
+              <h3><%= t.title %></h3>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="list panel panel-default">
+      <div class="panel-heading">推荐阅读</div>
+      <div class="panel-body topics row">
+          <!-- Place somewhere in the <body> of your page -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row home_excellent_topics">
+    <div class="banner panel panel-default">
+      <div class="panel-heading">精华</div>
+      <div class="panel-body topics">
+          <!-- Place somewhere in the <body> of your page -->
+              <% Topic.headline.each do |t| %>
+                <li>
+                  <h3><%= t.title %></h3>
+                </li>
+              <% end %>
+      </div>
+    </div>
+</div>
+
+<% if !mobile? %>
+  <%= render "/shared/index_sections" %>
+<% end %>
+
+<!-- Place in the <head>, after the three links -->
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider();
+  });
+</script>
