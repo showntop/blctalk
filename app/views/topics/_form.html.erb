@@ -14,14 +14,14 @@
     </div>
   </div>
 
-  <div id="cover-preview" class="dropzone needsclick dz-clickable">
+  <div id="cover-preview" class="needsclick dz-clickable">
     <%= f.hidden_field :cover %>
     <% if @topic.cover.present? %>
         <div class="dz-preview dz-file-preview">
           <div class="dz-details">
             <div class="dz-filename"><span data-dz-name></span></div>
             <div class="dz-size" data-dz-size></div>
-            <img src="<%= @topic.cover %>" />
+            <img data-dz-thumbnail src="<%= @topic.cover %>" />
           </div>
           <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
           <div class="dz-success-mark"><span>✔</span></div>
