@@ -7,9 +7,11 @@
       <div class="flexslider">
         <ul class="slides">
           <% Topic.headline.each do |t| %>
-            <li>
-              <!-- <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516774999867&di=db3c80049f9d816c8826d74aff9c4dd0&imgtype=0&src=http%3A%2F%2Fm.qqzhi.com%2Fupload%2Fimg_0_4098448448D3517229858_23.jpg"/> -->
-              <h3><%= t.title %></h3>
+            <li >
+              <%= link_to(main_app.topic_path(t), title: t.title) do %>
+                <img src="<%= t.cover %>" width="380" height="228" style=" height: 228px; overflow: hidden;"/>
+                <%= t.title %>
+              <% end %>
             </li>
           <% end %>
         </ul>
@@ -17,11 +19,16 @@
   </div>
 
   <div class="col-md-8">
-    <div class="list panel panel-default">
-      <div class="panel-heading">推荐阅读</div>
-      <div class="panel-body topics row">
-          <!-- Place somewhere in the <body> of your page -->
-      </div>
+    <div>推荐阅读</div>
+    <div>
+      <% Topic.headline.each do |t| %>
+        <div class="row">
+          <img class="col-md-2" src="<%= t.cover %>" width="100" height="60" style=" height: 60px; overflow: hidden;"/>
+          <%= link_to(main_app.topic_path(t), title: t.title, class: "col-md-10") do %>
+            <%= t.title %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -33,7 +40,7 @@
           <!-- Place somewhere in the <body> of your page -->
               <% Topic.headline.each do |t| %>
                 <li>
-                  <h3><%= t.title %></h3>
+                  <a><%= t.title %></a>
                 </li>
               <% end %>
       </div>
