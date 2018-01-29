@@ -9,6 +9,7 @@ class Ability
       roles_for_anonymous
     elsif @user.roles?(:admin)
       can :manage, :all
+      cannot :create, Topic
     elsif @user.roles?(:member)
       roles_for_members
     else
@@ -36,7 +37,7 @@ class Ability
   end
 
   def roles_for_topics
-    unless user.newbie?
+    if user.verified?
       can :create, Topic
     end
     can [:favorite, :unfavorite, :follow, :unfollow], Topic
