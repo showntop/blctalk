@@ -41,7 +41,19 @@ CarrierWave.configure do |config|
     config.upyun_username = Setting.upload_access_id
     config.upyun_password = Setting.upload_access_secret
     config.upyun_bucket = Setting.upload_bucket
-    config.upyun_bucket_host = Setting.upload_url
+    config.upyun_bucket_host = Setting.upload_url  
+  when 'qiniu'
+    config.storage = :qiniu
+    # Do not remove previously file after new file uploaded
+    config.remove_previously_stored_files_after_update = false
+    config.qiniu_access_key     = Setting.upload_access_id
+    config.qiniu_secret_key     = Setting.upload_access_secret
+    config.qiniu_bucket         = Setting.upload_bucket
+    config.qiniu_bucket_domain  = Setting.bucket_domain
+    # config.qiniu_bucket_private = true #default is false
+    config.qiniu_block_size     = 4*1024*1024
+    config.qiniu_protocol       = "http"
+    # config.qiniu_up_host        = 'http://up.qiniug.com' #七牛上传海外服务器,国内使用可以不要这行配置
   else
     config.storage = :file
   end

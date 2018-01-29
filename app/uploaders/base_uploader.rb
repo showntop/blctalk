@@ -36,7 +36,11 @@ class BaseUploader < CarrierWave::Uploader::Base
     when "aliyun"
       super(thumb: "?x-oss-process=image/#{aliyun_thumb_key(version_name)}")
     when "upyun"
-      [@url, version_name].join("!")
+      [@url, version_name].join("!")    
+    when "qiniu"
+      xxx = [@url, qiniu_thumb_key(version_name)].join("?")
+      Rails.logger.info xxx
+      xxx
     else
       [@url, version_name].join("!")
     end
@@ -53,6 +57,18 @@ class BaseUploader < CarrierWave::Uploader::Base
     when "xs"    then "resize,w_32,h_32,m_fill"
     else
       "resize,w_32,h_32,m_fill"
+    end
+  end
+
+  def qiniu_thumb_key(version_name)
+    case version_name
+    when "large" then "imageView2/2/w/1920/h/1920"
+    when "lg"    then "imageView2/2/w/192/h/192"
+    when "md"    then "imageView2/2/w/96/h/96"
+    when "sm"    then "imageView2/2/w/48/h/48"
+    when "xs"    then "imageView2/2/w/32/h/32"
+    else
+      "imageView2/2/w/32/h/32"
     end
   end
 end

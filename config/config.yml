@@ -59,10 +59,11 @@ defaults: &defaults
   google_analytics_key: ""
   asset_host: ""
   upload_url: ""
-  upload_provider: "file" # can be  file/upyun/aliyun
-  upload_access_id: "your-access-id" # or username
-  upload_access_secret: "your-access-secret" # or upyun password
-  upload_bucket: "your-bucket"
+  upload_provider: "qiniu" # can be  file/upyun/aliyun
+  upload_access_id: "FKj0IPQwM3gquMCFBSQjYI_1EGxb-8sASTh30--U" # or username
+  upload_access_secret: "t938V-cIGD6GFZWhS2VxsVWmZ1S06lWVrFKgKtsS" # or upyun password
+  upload_bucket: "journey"
+  bucket_domain: "oginbhz1c.bkt.clouddn.com"
   upload_aliyun_internal: false
   upload_aliyun_area: "cn-shanghai"
   mailer_provider: 'smtp'
@@ -93,7 +94,7 @@ development:
 test:
   <<: *defaults
   modules: 'all'
-  upload_provider: "file"
+  upload_provider: "qiniu"
   admin_emails: >
     admin@admin.com
   sso:
