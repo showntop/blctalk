@@ -4,12 +4,12 @@
   <div class="col-md-4">
       <div>头条</div>
       <!-- Place somewhere in the <body> of your page -->
-      <div class="flexslider">
+      <div id="slider" class="flexslider">
         <ul class="slides">
           <% Topic.headline.each do |t| %>
             <li >
               <%= link_to(main_app.topic_path(t), title: t.title) do %>
-                <img src="<%= t.cover %>" width="380" height="228" style=" height: 228px; overflow: hidden;"/>
+                <img src="<%= t.cover %>" width="750" height="350" style=" height: 300px; overflow: hidden;"/>
                 <%= t.title %>
               <% end %>
             </li>
@@ -21,12 +21,17 @@
   <div class="col-md-8">
     <div>推荐阅读</div>
     <div>
-      <% Topic.headline.each do |t| %>
-        <div class="row">
-          <img class="col-md-2" src="<%= t.cover %>" width="100" height="60" style=" height: 60px; overflow: hidden;"/>
-          <%= link_to(main_app.topic_path(t), title: t.title, class: "col-md-10") do %>
-            <%= t.title %>
+      <% Topic.headline.first(5).each do |t| %>
+        <div class="row recommend_topic">
+          <%= link_to(main_app.topic_path(t), title: t.title, class: "col-md-2") do %>
+            <img src="<%= t.cover %>" width="100" height="60" style=" height: 60px; overflow: hidden;"/>
           <% end %>
+          <div class="col-md-10 recommend_topic_info">
+            <%= link_to(main_app.topic_path(t), title: t.title) do %>
+              <%= t.title %>
+            <% end %>
+            <p>2018年7月11日 13:53</p>
+          </div>
         </div>
       <% end %>
     </div>
@@ -34,26 +39,29 @@
 </div>
 
 <div class="row home_excellent_topics">
-    <div class="banner panel panel-default">
-      <div class="panel-heading">精华</div>
-      <div class="panel-body topics">
-          <!-- Place somewhere in the <body> of your page -->
-              <% Topic.headline.each do |t| %>
-                <li>
-                  <a><%= t.title %></a>
-                </li>
-              <% end %>
-      </div>
-    </div>
+      <% Node.all.each do |nd| %>
+        <div class="col-md-6 node_block">
+          <div><%= nd.name %></div>
+          <div>
+            <% Topic.headline.first(5).each do |t| %>
+              <div class="row recommend_topic">
+                <%= link_to(main_app.topic_path(t), title: t.title, class: 'col-md-2') do %>
+                  <img src="<%= t.cover %>" width="80" height="60" style=" height: 60px; overflow: hidden;"/>
+                <% end %>
+                <div class="col-md-10 recommend_topic_info">
+                  <%= link_to(main_app.topic_path(t), title: t.title) do %>
+                    <%= t.title %>
+                  <% end %>
+                  <p>2018年7月11日 13:53</p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
 </div>
 
 <% if !mobile? %>
   <%= render "/shared/index_sections" %>
 <% end %>
-
-<!-- Place in the <head>, after the three links -->
-<script type="text/javascript" charset="utf-8">
-  $(window).load(function() {
-    $('.flexslider').flexslider();
-  });
-</script>

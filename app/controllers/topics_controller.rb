@@ -21,6 +21,7 @@ class TopicsController < ApplicationController
       else
         @topics.without_hide_nodes
       end
+      @topics = Topic.all
     @topics = @topics.fields_for_list
     @topics = @topics.page(params[:page])
     @page_title = t("menu.topics")
@@ -33,6 +34,16 @@ class TopicsController < ApplicationController
   def feed
     @topics = Topic.without_hide_nodes.recent.limit(20).includes(:node, :user, :last_reply_user)
     render layout: false if stale?(@topics)
+  end
+
+  def section
+    @section = Section.find(params[:id])
+    nodes = Node.where(section_id: params[:id]).select(:id)
+    @topics = Topic.where(node_id: nodes).last_actived.fields_for_list
+    @topics = @topics.includes(:user).page(params[:page])
+    @page_title = "#{@section.name} &raquo; #{t('menu.topics')}"
+    @page_title = [@section.name, t("menu.topics")].join(" · ")
+    render action: "index"
   end
 
   def node

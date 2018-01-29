@@ -3,6 +3,15 @@ window.Topics =
   topic_id: null
   user_liked_reply_ids: []
 
+$(document).on "turbolinks:load", ->
+  if $('.pagination').length
+    $(window).scroll ->
+      url = $('.pagination .next a').attr('href')
+      if url 
+        $('.pagination').text("Fetching more examples...")
+        $.getScript(url)
+    $(window).scroll()
+
 window.TopicView = Backbone.View.extend
   el: "body"
   currentPageImageURLs : []

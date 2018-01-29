@@ -1,0 +1,8 @@
+// Our ajax triggered code that corresponds with the rails controller action method.
+$('#item-feed').append('<%= j render partial: "/topics/topic", collection: @topics, locals: { suggest: false } %>');
+
+<% if @topics.next_page %>
+  $('.pagination').replaceWith('<%= j paginate(@topics) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

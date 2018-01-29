@@ -7,7 +7,7 @@
   <div class="col-md-9">
     <div class="topics topics-<%= action_name %> panel panel-default">
 
-      <div class="panel-body item-list">
+      <div id="item-feed" class="panel-body">
         <% if @suggest_topics.present? %>
           <%= render partial: '/topics/topic', collection: @suggest_topics, locals: { suggest: true } %>
         <% end %>
@@ -16,11 +16,7 @@
       </div>
 
       <div class="panel-footer clearfix">
-        <% if action_name.in? %(index recent) %>
-          <%= paginate @topics, total_pages: Topic.total_pages %>
-        <% else %>
           <%= paginate @topics %>
-        <% end %>
       </div>
     </div>
 
