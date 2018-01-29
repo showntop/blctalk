@@ -4,9 +4,9 @@ site_configs: &site_configs
     <a href="/" class="navbar-brand"><b>Blc</b>talk</a>
   # 导航栏扩展菜单
   navbar_html: |
-    <li><a href="/topics/node61">资讯</a></li>
-    <li><a href="/topics/section9">区块链</a></li>
-    <li><a href="/topics/section10">区块链应用</a></li>
+    <li><a href="/topics/section1">资讯</a></li>
+    <li><a href="/topics/section2">区块链技术</a></li>
+    <li><a href="/topics/section3">区块链应用</a></li>
   index_html: |
     <div style="text-align:center;"></div>
   wiki_index_html: |
